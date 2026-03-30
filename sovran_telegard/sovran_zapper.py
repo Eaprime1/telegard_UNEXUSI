@@ -29,8 +29,8 @@ from sovran_telegard import FileRecord, FileStatus
 
 # ─── Configuration ───────────────────────────────────────────────────────────
 
-AQUIFER_COLD = "/storage/emulated/0/pixel8a/_pixelator/pixelate/the_aquifer/cold/"
-SOVRAN_DATA  = "/storage/emulated/0/pixel8a/Q/runexusiam/sovran_telegard/data/"
+AQUIFER_COLD = "/storage/emulated/0/pixel8a/pixelator/pixelate/the_aquifer/cold/"
+SOVRAN_DATA  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 RESULTS_PATH = "/storage/emulated/0/pixel8a/pixelator/pixelate/tester_results.txt"
 FILE_AREA_DB = os.path.join(SOVRAN_DATA, "main_area.json")
 

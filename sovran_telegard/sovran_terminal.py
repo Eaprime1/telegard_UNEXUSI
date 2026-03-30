@@ -204,6 +204,83 @@ def list_boards():
     except ValueError:
         print("[!] Invalid input.")
 
+def post_message(session_user):
+    """Post a new message to the System Hub board."""
+    print("\n--- [ Post Message: System Hub ] ---")
+    subject = input("Subject > ").strip()
+    if not subject:
+        print("[!] Cancelled.")
+        return
+
+    print("Body (type '.' on a line by itself to finish):")
+    lines = []
+    while True:
+        line = input()
+        if line.strip() == ".":
+            break
+        lines.append(line)
+
+    if not lines:
+        print("[!] Empty message — cancelled.")
+        return
+
+    db = []
+    if os.path.exists(MESSAGE_DB):
+        with open(MESSAGE_DB, "r") as f:
+            try:
+                db = json.load(f)
+            except json.JSONDecodeError:
+                db = []
+
+    next_id = max((m["msg_id"] for m in db), default=0) + 1
+    db.append({
+        "msg_id":   next_id,
+        "msg_from": session_user,
+        "msg_to":   "All",
+        "subject":  subject,
+        "msg_date": int(datetime.now().timestamp()),
+        "body":     "\n".join(lines)
+    })
+
+    with open(MESSAGE_DB, "w") as f:
+        json.dump(db, f, indent=2)
+
+    print(f"\n[∰] Message #{next_id} posted. The wire remembers.")
+
+
+def list_callers():
+    """Show recent visitors from session DNA logs."""
+    sessions_dir = os.path.join(os.path.expanduser("~"), ".navigo_bbs", "sessions")
+    if not os.path.exists(sessions_dir):
+        print("\n[!] No caller log found yet.")
+        return
+
+    sessions = sorted(
+        [f for f in os.listdir(sessions_dir) if f.endswith(".json")],
+        reverse=True
+    )[:15]  # last 15
+
+    if not sessions:
+        print("\n[!] No callers on record.")
+        return
+
+    print("\n--- [ Recent Callers ] ---")
+    print(f"{'Date':<12} {'Identity':<20} {'Outcome'}")
+    print("-" * 50)
+    for fname in sessions:
+        try:
+            with open(os.path.join(sessions_dir, fname)) as f:
+                s = json.load(f)
+            dt = s.get("started_at", "")[:10]
+            identity = s.get("identity", "Unknown")
+            outcome  = s.get("outcome", "?")
+            print(f"{dt:<12} {identity:<20} {outcome}")
+        except Exception:
+            continue
+    print("-" * 50)
+    print(f"∰◊€π¿🌌∞  {len(sessions)} recent sessions")
+
+
 def show_status():
     """Run the Artesian Monitor status command."""
     print("\n--- [ System Pressure Status ] ---")
@@ -275,6 +352,8 @@ def main_menu(session_user="Guest"):
                 print("\nAvailable Commands:")
                 print("  /files    - List zapped file area")
                 print("  /boards   - Read message areas")
+                print("  /post     - Post a message to System Hub")
+                print("  /callers  - Recent visitor log")
                 print("  /doors    - Enter the Sovran Tavern (Games)")
                 print("  /zap      - Intake file from Aquifer")
                 print("  /status   - Show system pressure (Artesian)")
@@ -285,6 +364,10 @@ def main_menu(session_user="Guest"):
                 list_files()
             elif cmd == "/boards":
                 list_boards()
+            elif cmd == "/post":
+                post_message(session_user)
+            elif cmd == "/callers":
+                list_callers()
             elif cmd == "/doors":
                 list_doors(session_user)
             elif cmd == "/status":
