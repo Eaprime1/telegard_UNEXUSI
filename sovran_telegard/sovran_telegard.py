@@ -218,7 +218,44 @@ class MessageRecord:
     msg_id: int = 0             # Message ID
     body: str = ""              # Message body (stored in data file)
 
-# ─── 6. CONFIGURATION RECORD (configrec) ─────────────────────────────────────
+# ─── 6. NETWORKING STRUCTURES (FidoNet / EchoMail) ──────────────────────────
+
+@dataclass
+class FidoAddress:
+    """Translation of Telegard's netaddress (zone:net/node.point)"""
+    zone: int = 1
+    net: int = 0
+    node: int = 0
+    point: int = 0
+
+    def __str__(self):
+        s = f"{self.zone}:{self.net}/{self.node}"
+        if self.point > 0:
+            s += f".{self.point}"
+        return s
+
+@dataclass
+class NetworkRecord:
+    """Translation of Telegard's networkrec (NETWORK.DAT)"""
+    addresses: List[FidoAddress] = field(default_factory=list)
+    origin_line: str = ""       # Default origin line
+    nodepath: str = ""          # Path to nodelist
+    nodelist_type: int = 0      # 0: None, 1: v6, 2: v7, 3: FrontDoor
+
+@dataclass
+class NetMailRecord:
+    """Translation of Telegard's *.MSG (FidoNet NetMail)"""
+    msg_from: str = ""
+    msg_to: str = ""
+    subject: str = ""
+    date_str: str = ""          # DD Mon YY  HH:MM:SS
+    origin: FidoAddress = field(default_factory=FidoAddress)
+    dest: FidoAddress = field(default_factory=FidoAddress)
+    body: str = ""
+    read: bool = False
+    cost: int = 0               # message cost in units
+
+# ─── 7. CONFIGURATION RECORD (configrec) ─────────────────────────────────────
 
 @dataclass
 class ConfigRecord:

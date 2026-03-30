@@ -110,7 +110,8 @@ if os.path.exists(doors_path):
         ddb = json.load(f)
     check("doors.json: has entries", len(ddb) > 0, f"{len(ddb)} doors")
     for d in ddb:
-        print(f"{INFO}  [{d['status']:<10}] {d['id']:<12} — {d['name']}")
+        exes = ", ".join(d.get("exes", [])) or "no exe"
+        print(f"{INFO}  [{d['status']:<6}] {d['id']:<12} exes:[{exes}]")
 
 # ── TEST 3: Terminal import (non-interactive) ──────────────────
 

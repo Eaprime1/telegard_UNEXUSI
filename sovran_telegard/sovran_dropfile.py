@@ -72,7 +72,7 @@ def generate_door_sys(user, time_left_mins=60, node=1, baud=2400, path=DEFAULT_D
         "0",                    # 30. Daily DL KB
         "9999",                 # 31. Max Daily DL KB
         "01/01/70",             # 32. Birthdate
-        user.path or "",        # 33. Path to User File
+        "",                     # 33. Path to User File
         "",                     # 34. SysOp Note
         user.realname or "",    # 35. Real Name
         "PIXEL8 SOVRAN",        # 36. BBS Name

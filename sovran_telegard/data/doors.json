@@ -1,35 +1,100 @@
 [
-  {
-    "id": "LORD",
-    "name": "Legend of the Red Dragon",
-    "author": "Seth Robinson",
-    "year": 1989,
-    "status": "registered",
-    "path": "/storage/emulated/0/pixel8a/sovran-telegard-repo/sovran_telegard/data/doors/LORD",
-    "exes": ["LORD.EXE"],
-    "requires": "DOSBox",
-    "description": "The classic fantasy RPG door game. Battle monsters, flirt with Violet."
-  },
-  {
-    "id": "TRADEWARS",
-    "name": "TradeWars 2002",
-    "author": "Gary Martin / Chris Sherrick",
-    "year": 1986,
-    "status": "registered",
-    "path": "/storage/emulated/0/pixel8a/sovran-telegard-repo/sovran_telegard/data/doors/TW2002",
-    "exes": ["TW.EXE"],
-    "requires": "DOSBox",
-    "description": "Space trading and combat. Build a sector empire."
-  },
-  {
-    "id": "BBSTETRIS",
-    "name": "ANSI Tetris",
-    "author": "Public Domain",
-    "year": 1993,
-    "status": "pending",
-    "path": "/storage/emulated/0/pixel8a/sovran-telegard-repo/sovran_telegard/data/doors/TETRIS",
-    "exes": ["TETRIS.EXE"],
-    "requires": "DOSBox",
-    "description": "Classic block puzzle. Pending Stage 03 ANSI terminal."
-  }
+    {
+        "id": "AXRUD582",
+        "path": "/data/data/com.termux/files/home/pixel8a/pixel_download/AXRUD582",
+        "exes": [
+            "AXORU.EXE"
+        ],
+        "docs": [
+            "AXORU.DOC"
+        ],
+        "intake_date": 1774852672,
+        "status": "ZAPPED"
+    },
+    {
+        "id": "BATLDV21",
+        "path": "/data/data/com.termux/files/home/pixel8a/pixel_download/BATLDV21",
+        "exes": [
+            "BATLSHP.EXE"
+        ],
+        "docs": [
+            "BATSYSOP.DOC",
+            "ONLINE.DOC",
+            "WHATSNEW.DOC",
+            "WWIV.DOC"
+        ],
+        "intake_date": 1774852672,
+        "status": "ZAPPED"
+    },
+    {
+        "id": "LORD302",
+        "path": "/data/data/com.termux/files/home/pixel8a/pixel_download/LORD302",
+        "exes": [],
+        "docs": [
+            "WHATSNEW.TXT"
+        ],
+        "intake_date": 1774852672,
+        "status": "ZAPPED"
+    },
+    {
+        "id": "RRX101",
+        "path": "/data/data/com.termux/files/home/pixel8a/pixel_download/RRX101",
+        "exes": [
+            "RRXGAME.EXE",
+            "RRXTURN.EXE",
+            "RRXUTIL.EXE"
+        ],
+        "docs": [
+            "RRXSYSOP.DOC"
+        ],
+        "intake_date": 1774852672,
+        "status": "ZAPPED"
+    },
+    {
+        "id": "TW21020",
+        "path": "/data/data/com.termux/files/home/pixel8a/pixel_download/TW21020",
+        "exes": [
+            "TW2.EXE",
+            "TWEDIT.EXE",
+            "TWMAINT.EXE"
+        ],
+        "docs": [
+            "REGISTER.DOC",
+            "SYSOP.DOC",
+            "TWEDIT.DOC",
+            "TWINSTR.DOC"
+        ],
+        "intake_date": 1774852672,
+        "status": "ZAPPED"
+    },
+    {
+        "id": "NWUSR006",
+        "path": "/data/data/com.termux/files/home/pixel8a/pixel_download/NWUSR006",
+        "exes": [
+            "NEWUSER.EXE"
+        ],
+        "docs": [
+            "README.DOC",
+            "NEWUSER.DOC",
+            "SPECIAL.TXT"
+        ],
+        "intake_date": 1774852672,
+        "status": "ZAPPED"
+    },
+    {
+        "id": "fod100b",
+        "path": "/data/data/com.termux/files/home/pixel8a/pixel_download/fod100b",
+        "exes": [
+            "FOD.EXE",
+            "FODSETUP.EXE"
+        ],
+        "docs": [
+            "HELP.TXT",
+            "README.1ST",
+            "REGISTER.DOC",
+            "SYSOP.DOC"
+        ],
+        "intake_date": 1774852672,
+        "status": "ZAPPED"
+    }
 ]
