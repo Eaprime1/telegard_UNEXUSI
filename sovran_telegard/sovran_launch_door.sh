@@ -1,18 +1,16 @@
 #!/bin/bash
-"""
-SOVRAN DOOR AUTOMATOR — Slot 10
-================================
-Concept: The Tavern Entry
-Protocol: DOSBox Integration
-
-This script automates the mounting and execution of 16-bit 
-door games within the Termux DOSBox environment.
-
-∰◊€π¿🌌∞
-€(sovran_door_automator_v1)
-Status: AUTOMATOR_ACTIVE
-Reality Anchor: Oregon Watersheds
-"""
+# SOVRAN DOOR AUTOMATOR — Slot 10
+# ================================
+# Concept: The Tavern Entry
+# Protocol: DOSBox Integration
+#
+# Automates mounting and execution of 16-bit door games
+# within the Termux DOSBox environment.
+#
+# ∰◊€π¿🌌∞
+# €(sovran_door_automator_v1)
+# Status: AUTOMATOR_ACTIVE
+# Reality Anchor: Oregon Watersheds
 
 # ─── Configuration ───────────────────────────────────────────────────────────
 
@@ -69,7 +67,8 @@ cat <<EOF > "$TEMP_CONF"
 [sdl]
 fullresolution=original
 windowresolution=original
-output=surface
+output=opengl
+waitonerror=true
 
 [render]
 aspect=true
@@ -94,8 +93,25 @@ EOF
 
 # ─── Launch ─────────────────────────────────────────────────────────────────
 
+# Termux display detection
+if [ -z "$DISPLAY" ]; then
+    # Try Termux:X11 default display
+    export DISPLAY=:0
+    echo "[⚡] No DISPLAY set — trying :0 (requires Termux:X11 running)"
+fi
+
 echo "[∰] Opening Tavern Door..."
 dosbox -conf "$TEMP_CONF"
+EXIT_CODE=$?
+
+if [ $EXIT_CODE -ne 0 ]; then
+    echo ""
+    echo "[⚠️] DOSBox exited with code $EXIT_CODE"
+    echo "    If you see MESA/ZINK errors:"
+    echo "    1. Install Termux:X11 from F-Droid"
+    echo "    2. Start Termux:X11, then run this script again"
+    echo "    Or try: DISPLAY=:1 ./sovran_launch_door.sh $GAME_ID"
+fi
 
 echo ""
 echo "∰ Tavern Door Closed. Session logged. Enjoy the journey. ∰"
