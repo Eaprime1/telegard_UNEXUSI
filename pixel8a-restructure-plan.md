@@ -130,7 +130,7 @@ mkdir -p pixelator
 ```bash
 # Execute on Pixel8a via Termux
 cd ~
-mkdir -p PIXEL8/{pixelate/maw_pixellum/{intake,processing,workflow_docs},pixelate/facets_pixellum/{pending,ready},pixelshard/{deployed,growing,archive},pixelization/{protocols,templates,chain_of_custody}}
+mkdir -p PIXEL8/{pixelate/{maw_pixellum/{intake,processing,workflow_docs},facets_pixellum/{pending,ready}},pixelshard/{deployed,growing,archive},pixelization/{protocols,templates,chain_of_custody}}
 
 # Clone spectorium
 cd PIXEL8
